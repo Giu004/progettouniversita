@@ -35,6 +35,28 @@ docker compose up -d --build
 
 Docker now runs a single `app` container in multi-process mode. By default it uses `ERDB_WORKERS=auto`, so the container starts one worker per available CPU core. You can pin a fixed number with `ERDB_WORKERS=4 docker compose up -d --build`.
 
+Run the published image directly:
+```bash
+docker pull ghcr.io/realbestia1/erdb:latest
+docker run -d \
+  --name erdb \
+  -p 3000:3000 \
+  -v ./data:/app/data \
+  ghcr.io/realbestia1/erdb:latest
+```
+
+Update the published image:
+```bash
+docker pull ghcr.io/realbestia1/erdb:latest
+docker stop erdb
+docker rm erdb
+docker run -d \
+  --name erdb \
+  -p 3000:3000 \
+  -v ./data:/app/data \
+  ghcr.io/realbestia1/erdb:latest
+```
+
 The public port is `ERDB_HTTP_PORT` (default `3000`) exposed by Caddy. Set it in the `.env` file.
 Data (SQLite database and image cache) is persisted in `./data`.
 
