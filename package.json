@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "node .next/standalone/server.js",
+    "start": "node scripts/start-server.js",
+    "start:single": "node .next/standalone/server.js",
     "lint": "eslint .",
     "clean": "next clean",
     "imdb:import": "node scripts/imdb-import.js",
@@ -13,10 +14,12 @@
     "fonts:install:win": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-fonts-windows.ps1",
     "postinstall": "node scripts/postinstall.js",
     "docker:up": "docker compose up --build",
-    "docker:up:scale4": "docker compose up -d --build --scale app=4",
     "docker:down": "docker compose down"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@google/genai": "^1.17.0",
     "@hookform/resolvers": "^5.2.1",
     "autoprefixer": "^10.4.21",
